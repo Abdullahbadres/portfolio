@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react"
 import PropTypes from "prop-types"
-import SwipeableViews from "react-swipeable-views"
 import { useTheme } from "@mui/material/styles"
 import AppBar from "@mui/material/AppBar"
 import Tabs from "@mui/material/Tabs"
@@ -229,6 +228,71 @@ export default function FullWidthTabs() {
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems)
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems)
 
+  // Function to render the current tab content
+  const renderTabContent = () => {
+    switch (value) {
+      case 0: // Projects tab
+        return (
+          <div className="container mx-auto flex justify-center items-center overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              {displayedProjects.map((project, index) => (
+                <div
+                  key={project.id || index}
+                  data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                  data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                >
+                  <CardProject
+                    Img={project.Img}
+                    Title={project.Title}
+                    Description={project.Description}
+                    Link={project.Link}
+                    id={project.id}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+
+      case 1: // Certificates tab
+        return (
+          <div className="container mx-auto flex justify-center items-center overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
+              {displayedCertificates.map((certificate, index) => (
+                <div
+                  key={index}
+                  data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                  data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                >
+                  <Certificate ImgSertif={certificate.Img} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+
+      case 2: // Tech Stack tab
+        return (
+          <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
+              {techStacks.map((stack, index) => (
+                <div
+                  key={index}
+                  data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                  data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                >
+                  <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
@@ -340,71 +404,24 @@ export default function FullWidthTabs() {
           </Tabs>
         </AppBar>
 
-        <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"} index={value} onChangeIndex={setValue}>
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-                {displayedProjects.map((project, index) => (
-                  <div
-                    key={project.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <CardProject
-                      Img={project.Img}
-                      Title={project.Title}
-                      Description={project.Description}
-                      Link={project.Link}
-                      id={project.id}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-            {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton onClick={() => toggleShowMore("projects")} isShowingMore={showAllProjects} />
-              </div>
-            )}
-          </TabPanel>
+        {/* Tab content */}
+        <div className="mt-6">
+          {renderTabContent()}
 
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedCertificates.map((certificate, index) => (
-                  <div
-                    key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <Certificate ImgSertif={certificate.Img} />
-                  </div>
-                ))}
-              </div>
+          {/* Show More/Less button for projects */}
+          {value === 0 && projects.length > initialItems && (
+            <div className="mt-6 w-full flex justify-start">
+              <ToggleButton onClick={() => toggleShowMore("projects")} isShowingMore={showAllProjects} />
             </div>
-            {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton onClick={() => toggleShowMore("certificates")} isShowingMore={showAllCertificates} />
-              </div>
-            )}
-          </TabPanel>
+          )}
 
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
-                {techStacks.map((stack, index) => (
-                  <div
-                    key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
-                  </div>
-                ))}
-              </div>
+          {/* Show More/Less button for certificates */}
+          {value === 1 && certificates.length > initialItems && (
+            <div className="mt-6 w-full flex justify-start">
+              <ToggleButton onClick={() => toggleShowMore("certificates")} isShowingMore={showAllCertificates} />
             </div>
-          </TabPanel>
-        </SwipeableViews>
+          )}
+        </div>
       </Box>
     </div>
   )
