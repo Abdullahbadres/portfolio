@@ -1,4 +1,3 @@
-Here’s the translation of your text to English:  
 
 ---
 
