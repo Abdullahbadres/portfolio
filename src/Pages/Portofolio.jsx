@@ -141,10 +141,10 @@ const projectData = [
     Title: "Anakpanah Project",
     Description: "A web application for Anakpanah with modern features and responsive design.",
     Img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/anakpanah-project.jpg-kqEc7thzjsfZcEzsTkspfkXB48r9JV.jpeg",
-    Link: "https://anakpanah.vercel.app",
+    Link: "https://react-with-html-css-mini-project-anakpanah-vercel-7fvn.vercel.app",
     TechStack: ["React", "JavaScript", "Tailwind CSS", "HTML"],
     Features: ["User Authentication", "Dashboard Interface", "Data Visualization", "Mobile Responsive"],
-    Github: "https://github.com/Abdullahbadres/anakpanah",
+    Github: "https://github.com/Abdullahbadres/React-with-HTML-CSS-mini-project-anakpanah-VERCEL/tree/main/vite-project",
   },
   {
     id: "project4",
