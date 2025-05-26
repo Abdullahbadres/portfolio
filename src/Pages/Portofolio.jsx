@@ -9,10 +9,10 @@ import Tab from "@mui/material/Tab"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
 import CardProject from "../components/CardProject"
+import CardCertificate from "../components/CardCertificate" // ✅ Import CardCertificate component
 import TechStackIcon from "../components/TechStackIcon"
 import AOS from "aos"
 import "aos/dist/aos.css"
-import Certificate from "../components/Certificate"
 import { Code, Award, Boxes } from "lucide-react"
 
 // Separate ShowMore/ShowLess button component
@@ -114,7 +114,7 @@ const techStacks = [
   { icon: "SweetAlert.svg", language: "SweetAlert2" },
 ]
 
-// Add this after the techStacks array
+// Project data
 const projectData = [
   {
     id: "project1",
@@ -144,7 +144,8 @@ const projectData = [
     Link: "https://react-with-html-css-mini-project-anakpanah-vercel-7fvn.vercel.app",
     TechStack: ["React", "JavaScript", "Tailwind CSS", "HTML"],
     Features: ["User Authentication", "Dashboard Interface", "Data Visualization", "Mobile Responsive"],
-    Github: "https://github.com/Abdullahbadres/React-with-HTML-CSS-mini-project-anakpanah-VERCEL/tree/main/vite-project",
+    Github:
+      "https://github.com/Abdullahbadres/React-with-HTML-CSS-mini-project-anakpanah-VERCEL/tree/main/vite-project",
   },
   {
     id: "project4",
@@ -178,11 +179,82 @@ const projectData = [
   },
 ]
 
+// ✅ Certificate data dengan cloud links - PASTIKAN DATA INI TERSIMPAN
+const certificateData = [
+  {
+    id: "cert1",
+    title: "Front-End Web Development Bootcamp",
+    description:
+      "Comprehensive bootcamp covering modern front-end development technologies and best practices. Successfully completed with Grade A+ certification from Dibimbing.id, demonstrating proficiency in contemporary web development frameworks and methodologies.",
+    image: "https://i.ibb.co.com/YTh4Ch6f/certificate-dibimbing.png",
+    pdfUrl: "https://certificate-dibimbing.tiiny.site/",
+    issuedTo: "Abdullah Badres",
+    duration: "23 November 2024 - 25 Mei 2025",
+    grade: "A+",
+    certificateNo: "201029FE210523001",
+    studentId: "56438",
+    verificationUrl: "https://dibimbing.id/certificate-validation?cn=201029FE210523001",
+    institution: "Dibimbing.id",
+    technologiesLearned: [
+      "Front-End Development",
+      "JavaScript",
+      "React.js",
+      "jQuery",
+      "jQuery UI",
+      "jQuery Mobile",
+      "HTML5",
+      "HTML",
+      "Cascading Style Sheets (CSS)",
+      "Tailwind CSS",
+      "Bootstrap (Framework)",
+      "Node.js",
+      "Postman API",
+      "GitHub",
+      "Redux.js",
+    ],
+    keyFeatures: ["Responsive Design", "Modern UI Components", "Interactive Elements", "API Integration"],
+  },
+  {
+    id: "cert2",
+    title: "Academic Report Card - Front-End Development",
+    description:
+      "Detailed academic performance report showcasing comprehensive learning progress and achievements throughout the Front-End Web Development program. This report card demonstrates consistent excellence and mastery of various web development technologies and methodologies.",
+    image: "https://i.ibb.co.com/yFJ2btdb/reportcard-Abdullah-Badres-page-0009-imageonline-co-merged.png",
+    pdfUrl: "https://reportcard-dibimbing.tiiny.site/",
+    issuedTo: "Abdullah Badres",
+    duration: "23 November 2024 - 25 Mei 2025",
+    grade: "A+",
+    certificateNo: "201029FE210523001",
+    studentId: "56438",
+    verificationUrl: "https://dibimbing.id/certificate-validation?cn=201029FE210523001",
+    institution: "Dibimbing.id",
+    technologiesLearned: [
+      "HTML5 & Semantic Markup",
+      "CSS3 & Advanced Styling",
+      "JavaScript ES6+",
+      "React.js Framework",
+      "Responsive Web Design",
+      "Git Version Control",
+      "API Integration",
+      "Modern Development Tools",
+      "UI/UX Principles",
+      "Performance Optimization",
+    ],
+    keyFeatures: [
+      "Academic Excellence Recognition",
+      "Comprehensive Skill Assessment",
+      "Progress Tracking Documentation",
+      "Performance Analytics",
+      "Learning Milestone Achievements",
+    ],
+  },
+]
+
 export default function FullWidthTabs() {
   const theme = useTheme()
   const [value, setValue] = useState(0)
   const [projects, setProjects] = useState([])
-  const [certificates, setCertificates] = useState([])
+  const [certificates, setCertificates] = useState([]) // ✅ State untuk certificates
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [showAllCertificates, setShowAllCertificates] = useState(false)
   const isMobile = window.innerWidth < 768
@@ -191,21 +263,41 @@ export default function FullWidthTabs() {
   useEffect(() => {
     // Initialize AOS once
     AOS.init({
-      once: false, // This will make animations occur only once
+      once: false,
     })
   }, [])
 
+  // ✅ Fetch data dan simpan ke localStorage
   const fetchData = useCallback(async () => {
     try {
-      // Use static project data instead of fetching from Firebase
-      setProjects(projectData)
-      setCertificates([])
+      console.log("🔄 Setting up portfolio data...")
 
-      // Store in localStorage
+      // Set projects data
+      setProjects(projectData)
       localStorage.setItem("projects", JSON.stringify(projectData))
-      localStorage.setItem("certificates", JSON.stringify([]))
+
+      // ✅ Set certificates data - PENTING!
+      setCertificates(certificateData)
+      localStorage.setItem("certificates", JSON.stringify(certificateData))
+
+      console.log("✅ Data berhasil disimpan:")
+      console.log("📁 Projects:", projectData.length, "items")
+      console.log("🏆 Certificates:", certificateData.length, "items")
+      console.log("💾 LocalStorage updated")
+      console.log(
+        "🎓 Certificate IDs:",
+        certificateData.map((cert) => cert.id),
+      )
+
+      // ✅ Verify localStorage
+      const savedCerts = JSON.parse(localStorage.getItem("certificates")) || []
+      console.log("🔍 Verification - Saved certificates:", savedCerts.length)
+      console.log(
+        "🔍 Verification - IDs:",
+        savedCerts.map((c) => c.id),
+      )
     } catch (error) {
-      console.error("Error setting data:", error)
+      console.error("❌ Error setting data:", error)
     }
   }, [])
 
@@ -215,6 +307,7 @@ export default function FullWidthTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
+    console.log("📋 Tab changed to:", newValue === 0 ? "Projects" : newValue === 1 ? "Certificates" : "Tech Stack")
   }
 
   const toggleShowMore = useCallback((type) => {
@@ -228,7 +321,7 @@ export default function FullWidthTabs() {
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems)
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems)
 
-  // Function to render the current tab content
+  // ✅ Function to render the current tab content dengan integrasi CardCertificate component
   const renderTabContent = () => {
     switch (value) {
       case 0: // Projects tab
@@ -254,19 +347,24 @@ export default function FullWidthTabs() {
           </div>
         )
 
-      case 1: // Certificates tab
+      case 1: // ✅ Certificates tab dengan integrasi CardCertificate component
+        console.log("🏆 Rendering certificates:", displayedCertificates.length, "items")
         return (
           <div className="container mx-auto flex justify-center items-center overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-              {displayedCertificates.map((certificate, index) => (
-                <div
-                  key={index}
-                  data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                  data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                >
-                  <Certificate ImgSertif={certificate.Img} />
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              {displayedCertificates.map((certificate, index) => {
+                console.log(`🎓 Certificate ${index + 1}:`, certificate.id, "-", certificate.title)
+                return (
+                  <div
+                    key={certificate.id || index}
+                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                  >
+                    {/* ✅ CardCertificate component dengan props yang benar */}
+                    <CardCertificate certificate={certificate} />
+                  </div>
+                )
+              })}
             </div>
           </div>
         )
@@ -295,7 +393,7 @@ export default function FullWidthTabs() {
 
   return (
     <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
-      {/* Header section - unchanged */}
+      {/* Header section */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
           <span
@@ -317,7 +415,7 @@ export default function FullWidthTabs() {
       </div>
 
       <Box sx={{ width: "100%" }}>
-        {/* AppBar and Tabs section - unchanged */}
+        {/* AppBar and Tabs section */}
         <AppBar
           position="static"
           elevation={0}
@@ -341,7 +439,6 @@ export default function FullWidthTabs() {
           }}
           className="md:px-4"
         >
-          {/* Tabs remain unchanged */}
           <Tabs
             value={value}
             onChange={handleChange}
@@ -349,7 +446,6 @@ export default function FullWidthTabs() {
             indicatorColor="secondary"
             variant="fullWidth"
             sx={{
-              // Existing styles remain unchanged
               minHeight: "70px",
               "& .MuiTab-root": {
                 fontSize: { xs: "0.9rem", md: "1rem" },
