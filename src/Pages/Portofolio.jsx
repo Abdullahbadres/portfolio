@@ -179,7 +179,7 @@ const projectData = [
   },
 ]
 
-// ✅ Certificate data dengan cloud links - PASTIKAN DATA INI TERSIMPAN
+// ✅ Certificate data dengan updated PDF links dan Bachelor's Certificate
 const certificateData = [
   {
     id: "cert1",
@@ -187,7 +187,7 @@ const certificateData = [
     description:
       "Comprehensive bootcamp covering modern front-end development technologies and best practices. Successfully completed with Grade A+ certification from Dibimbing.id, demonstrating proficiency in contemporary web development frameworks and methodologies.",
     image: "https://i.ibb.co.com/YTh4Ch6f/certificate-dibimbing.png",
-    pdfUrl: "https://certificate-dibimbing.tiiny.site/",
+    pdfUrl: "https://certificate-dibimbing.tiiny.site/", // ✅ Updated PDF link
     issuedTo: "Abdullah Badres",
     duration: "23 November 2024 - 25 Mei 2025",
     grade: "A+",
@@ -220,11 +220,11 @@ const certificateData = [
     description:
       "Detailed academic performance report showcasing comprehensive learning progress and achievements throughout the Front-End Web Development program. This report card demonstrates consistent excellence and mastery of various web development technologies and methodologies.",
     image: "https://i.ibb.co.com/yFJ2btdb/reportcard-Abdullah-Badres-page-0009-imageonline-co-merged.png",
-    pdfUrl: "https://reportcard-dibimbing.tiiny.site/",
+    pdfUrl: "https://reportcard-dibimbing.tiiny.site/", // ✅ Updated PDF link
     issuedTo: "Abdullah Badres",
     duration: "23 November 2024 - 25 Mei 2025",
     grade: "A+",
-    certificateNo: "201029FE210523001",
+    certificateNo: "REPORT-2024-001",
     studentId: "56438",
     verificationUrl: "https://dibimbing.id/certificate-validation?cn=201029FE210523001",
     institution: "Dibimbing.id",
@@ -246,6 +246,41 @@ const certificateData = [
       "Progress Tracking Documentation",
       "Performance Analytics",
       "Learning Milestone Achievements",
+    ],
+  },
+  {
+    // ✅ NEW: Bachelor's Certificate
+    id: "bachelor",
+    title: "Bachelor's Degree - Industrial Engineering",
+    description:
+      "Bachelor's degree in Industrial Engineering, providing a strong foundation in analytical thinking, process optimization, and systematic problem-solving approaches that complement my transition into web development.",
+    image: "https://i.ibb.co.com/rStVbGY/Ijazah.jpg",
+    pdfUrl: null, // No PDF download for bachelor's
+    issuedTo: "Abdullah",
+    duration: "2013 - 2017",
+    grade: "Bachelor's Degree (Industrial Engineering)",
+    certificateNo: 26201201738919,
+    studentId: null,
+    grade: "3.17 of 4.00",
+    verificationUrl: null,
+    institution: "Sultan Agung Islamic University (UNISSULA)",
+    type: "bachelor", // ✅ Special type to identify bachelor's certificate
+    technologiesLearned: [
+      "Process Optimization",
+      "Systems Analysis",
+      "Project Management",
+      "Quality Control",
+      "Data Analysis",
+      "Problem Solving",
+      "Operations Research",
+      "Supply Chain Management",
+    ],
+    keyFeatures: [
+      "Analytical Thinking Foundation",
+      "Process Improvement Methodologies",
+      "Project Management Skills",
+      "Data-Driven Decision Making",
+      "Systematic Problem Solving",
     ],
   },
 ]
@@ -288,6 +323,7 @@ export default function FullWidthTabs() {
         "🎓 Certificate IDs:",
         certificateData.map((cert) => cert.id),
       )
+      console.log("🎓 Bachelor's Certificate added:", certificateData.find((cert) => cert.type === "bachelor")?.title)
 
       // ✅ Verify localStorage
       const savedCerts = JSON.parse(localStorage.getItem("certificates")) || []
