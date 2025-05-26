@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Modal, IconButton, Box, Backdrop } from "@mui/material"
-import { Eye, ArrowRight, Award, Calendar, Building } from "lucide-react"
+import { Eye, ArrowRight, Award, Calendar, Building, GraduationCap } from "lucide-react"
 import CloseIcon from "@mui/icons-material/Close"
 
 const CardCertificate = ({ certificate }) => {
@@ -17,6 +17,9 @@ const CardCertificate = ({ certificate }) => {
     setOpen(false)
   }
 
+  // ✅ Check if this is a bachelor's certificate
+  const isBachelor = certificate.type === "bachelor"
+
   // Handle kasus ketika certificate kosong
   const handlePreview = (e) => {
     if (!certificate.image) {
@@ -29,10 +32,14 @@ const CardCertificate = ({ certificate }) => {
   }
 
   const handleDetails = (e) => {
-    if (!certificate.id) {
-      console.log("❌ Certificate ID kosong")
+    if (!certificate.id || isBachelor) {
+      console.log("❌ Certificate ID kosong atau Bachelor's certificate")
       e.preventDefault()
-      alert("Certificate details are not available")
+      if (isBachelor) {
+        alert("Bachelor's certificate details are displayed here for informational purposes only")
+      } else {
+        alert("Certificate details are not available")
+      }
     } else {
       console.log("🚀 Navigating to certificate detail:", certificate.id)
       console.log("🔗 URL will be: /certificate/" + certificate.id)
@@ -48,7 +55,14 @@ const CardCertificate = ({ certificate }) => {
     <>
       <div className="group relative w-full">
         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+          {/* ✅ Different gradient for bachelor's certificate */}
+          <div
+            className={`absolute inset-0 ${
+              isBachelor
+                ? "bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-red-500/10"
+                : "bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"
+            } opacity-50 group-hover:opacity-70 transition-opacity duration-300`}
+          ></div>
 
           <div className="relative p-5 z-10">
             {/* Certificate Image */}
@@ -68,7 +82,13 @@ const CardCertificate = ({ certificate }) => {
             </div>
 
             <div className="mt-4 space-y-3">
-              <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              <h3
+                className={`text-xl font-semibold ${
+                  isBachelor
+                    ? "bg-gradient-to-r from-amber-200 via-orange-200 to-red-200"
+                    : "bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200"
+                } bg-clip-text text-transparent`}
+              >
                 {certificate.title}
               </h3>
 
@@ -77,8 +97,8 @@ const CardCertificate = ({ certificate }) => {
               {/* Certificate Info */}
               <div className="flex flex-col gap-2 text-xs text-gray-400">
                 <div className="flex items-center gap-2">
-                  <Building className="w-3 h-3" />
-                  <span>{certificate.institution || "Dibimbing.id"}</span>
+                  {isBachelor ? <GraduationCap className="w-3 h-3" /> : <Building className="w-3 h-3" />}
+                  <span>{certificate.institution || (isBachelor ? "University" : "Dibimbing.id")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-3 h-3" />
@@ -86,7 +106,7 @@ const CardCertificate = ({ certificate }) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Award className="w-3 h-3" />
-                  <span>Grade: {certificate.grade}</span>
+                  <span>{isBachelor ? certificate.grade : `Grade: ${certificate.grade}`}</span>
                 </div>
               </div>
 
@@ -99,7 +119,13 @@ const CardCertificate = ({ certificate }) => {
                   <Eye className="w-4 h-4" />
                 </button>
 
-                {certificate.id ? (
+                {/* ✅ Conditional rendering for Details button */}
+                {isBachelor ? (
+                  <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                    <GraduationCap className="w-4 h-4" />
+                    <span className="text-sm font-medium">Academic Background</span>
+                  </div>
+                ) : certificate.id ? (
                   <Link
                     to={`/certificate/${certificate.id}`}
                     onClick={handleDetails}
@@ -114,7 +140,11 @@ const CardCertificate = ({ certificate }) => {
               </div>
             </div>
 
-            <div className="absolute inset-0 border border-white/0 group-hover:border-purple-500/50 rounded-xl transition-colors duration-300 -z-50"></div>
+            <div
+              className={`absolute inset-0 border border-white/0 ${
+                isBachelor ? "group-hover:border-amber-500/50" : "group-hover:border-purple-500/50"
+              } rounded-xl transition-colors duration-300 -z-50`}
+            ></div>
           </div>
         </div>
       </div>
