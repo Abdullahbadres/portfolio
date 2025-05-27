@@ -184,8 +184,8 @@ const Home = () => {
                 {/* Description */}
                 <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg mt-4 text-center">
                   Enthusiastic and detail-driven professional transitioning into front-end web development. Currently
-                  undergoing hands-on training in a bootcamp to develop expertise in HTML, CSS, JavaScript, and modern
-                  frameworks. Brings a strong background in creativity and analytical thinking, refined through
+                  develop expertise in HTML, CSS (Tailwind and Bootstrap), JavaScript, and modern library (React.js).
+                  Brings a strong background in creativity with critical and analytical thinking, refined through
                   experiences in marketing, team leadership, and entrepreneurship. Committed to building responsive,
                   user-focused, and visually striking web solutions.
                 </p>
