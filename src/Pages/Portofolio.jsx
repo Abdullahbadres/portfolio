@@ -283,6 +283,48 @@ const certificateData = [
       "Systematic Problem Solving",
     ],
   },
+  {
+    id: "certEF",
+    title: "English Proficiency Certificate - EF SET",
+    description:
+      "Official English proficiency certification from Education First Standard English Test (EF SET), demonstrating B2 Upper Intermediate level competency in English language skills across reading, listening, writing, and speaking domains.",
+    image: "https://i.ibb.co.com/LXhGBnt4/EF-SET-Certificate-page-0001.jpg",
+    pdfUrl: null,
+    issuedTo: "Abdullah Badres",
+    duration: "10th June 2025",
+    grade: "51/100 (B2 Upper Intermediate)",
+    certificateNo: "EF-SET-2025-001",
+    studentId: null,
+    verificationUrl: "https://cert.efset.org/en/HxuHPy",
+    institution: "Education First Standard English Test (EF SET)",
+    type: "language", // Special type for language certificate
+    technologiesLearned: [
+      "English Reading Comprehension",
+      "English Listening Skills",
+      "English Writing Proficiency",
+      "English Speaking Fluency",
+      "Academic English",
+      "Business English Communication",
+      "Cross-cultural Communication",
+      "International English Standards",
+    ],
+    keyFeatures: [
+      "CEFR B2 Upper Intermediate Level",
+      "Comprehensive Language Assessment",
+      "International Recognition",
+      "Academic and Professional Validation",
+      "Multi-skill Evaluation",
+    ],
+    // Additional EF SET specific data
+    efsetScore: "51/100",
+    cefrLevel: "B2 (Upper Intermediate)",
+    skillBreakdown: {
+      reading: { score: "39/100", level: "A2 Elementary" },
+      listening: { score: "60/100", level: "B2 Upper Intermediate" },
+      writing: { score: "48/100", level: "B1 Intermediate" },
+      speaking: { score: "58/100", level: "B2 Upper Intermediate" },
+    },
+  },
 ]
 
 export default function FullWidthTabs() {
