@@ -19,6 +19,9 @@ import {
   Hash,
   Sparkles,
   Download,
+  Globe,
+  Languages,
+  BarChart3,
 } from "lucide-react"
 
 const TECH_ICONS = {
@@ -47,6 +50,15 @@ const TECH_ICONS = {
   "Modern Development Tools": BookOpen,
   "UI/UX Principles": Code2,
   "Performance Optimization": Code2,
+  // Language skills icons
+  "English Reading Comprehension": BookOpen,
+  "English Listening Skills": Globe,
+  "English Writing Proficiency": BookOpen,
+  "English Speaking Fluency": Languages,
+  "Academic English": GraduationCap,
+  "Business English Communication": Building,
+  "Cross-cultural Communication": Globe,
+  "International English Standards": Globe,
   default: CheckCircle,
 }
 
@@ -85,6 +97,7 @@ const FeatureItem = ({ feature, index }) => {
 
 const CertificateStats = ({ certificate }) => {
   const techCount = certificate?.technologiesLearned?.length || 0
+  const isLanguageCert = certificate?.type === "language"
 
   return (
     <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 p-2 sm:p-3 md:p-4 bg-[#0a0a1a] rounded-lg sm:rounded-xl overflow-hidden relative">
@@ -92,11 +105,17 @@ const CertificateStats = ({ certificate }) => {
 
       <div className="relative z-10 flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 bg-white/5 p-1.5 sm:p-2 md:p-3 rounded-md sm:rounded-lg border border-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-500/50 hover:shadow-lg">
         <div className="bg-blue-500/20 p-1 sm:p-1.5 md:p-2 rounded-full">
-          <Code2 className="text-blue-300 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" strokeWidth={1.5} />
+          {isLanguageCert ? (
+            <Languages className="text-blue-300 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" strokeWidth={1.5} />
+          ) : (
+            <Code2 className="text-blue-300 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" strokeWidth={1.5} />
+          )}
         </div>
         <div className="flex-grow min-w-0">
           <div className="text-sm sm:text-lg md:text-xl font-semibold text-blue-200">{techCount}</div>
-          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 leading-tight">Technologies</div>
+          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 leading-tight">
+            {isLanguageCert ? "Skills" : "Technologies"}
+          </div>
         </div>
       </div>
 
@@ -106,10 +125,49 @@ const CertificateStats = ({ certificate }) => {
         </div>
         <div className="flex-grow min-w-0">
           <div className="text-sm sm:text-lg md:text-xl font-semibold text-purple-200">
-            {certificate?.grade || "A+"}
+            {isLanguageCert ? certificate?.cefrLevel?.split(" ")[0] || "B2" : certificate?.grade || "A+"}
           </div>
-          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 leading-tight">Final Grade</div>
+          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 leading-tight">
+            {isLanguageCert ? "CEFR Level" : "Final Grade"}
+          </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+// New component for EF SET skill breakdown
+const SkillBreakdown = ({ skillBreakdown }) => {
+  const skills = [
+    { key: "reading", label: "Reading", icon: BookOpen },
+    { key: "listening", label: "Listening", icon: Globe },
+    { key: "writing", label: "Writing", icon: BookOpen },
+    { key: "speaking", label: "Speaking", icon: Languages },
+  ]
+
+  return (
+    <div className="bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-2xl p-3 sm:p-6 md:p-8 border border-white/10 space-y-3 sm:space-y-6 hover:border-white/20 transition-colors duration-300 group">
+      <h3 className="text-sm sm:text-xl font-semibold text-white/90 flex items-center gap-2 sm:gap-3">
+        <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 group-hover:rotate-[20deg] transition-transform duration-300" />
+        Skill Breakdown
+      </h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+        {skills.map(({ key, label, icon: Icon }) => {
+          const skill = skillBreakdown[key]
+          return (
+            <div
+              key={key}
+              className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10"
+            >
+              <Icon className="w-3 h-3 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] sm:text-sm text-gray-400">{label}</p>
+                <p className="text-xs sm:text-base text-white font-medium truncate">{skill.score}</p>
+                <p className="text-[8px] sm:text-xs text-gray-500">{skill.level}</p>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -163,6 +221,9 @@ const CertificateDetails = () => {
       </div>
     )
   }
+
+  const isLanguageCert = certificate.type === "language"
+  const isEFSet = certificate.id === "certEF"
 
   return (
     <div className="min-h-screen bg-[#030014] px-2 sm:px-4 md:px-0 relative overflow-hidden">
@@ -247,16 +308,28 @@ const CertificateDetails = () => {
 
                 <div className="group relative inline-flex items-center justify-center space-x-1 sm:space-x-1.5 md:space-x-2 px-3 sm:px-4 md:px-8 py-2 sm:py-2.5 md:py-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 hover:from-purple-600/20 hover:to-pink-600/20 text-purple-300 rounded-lg sm:rounded-xl transition-all duration-300 border border-purple-500/20 hover:border-purple-500/40 backdrop-blur-xl overflow-hidden text-xs sm:text-sm md:text-base">
                   <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-purple-600/10 to-pink-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
-                  <GraduationCap className="relative w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Grade: {certificate.grade}</span>
+                  {isLanguageCert ? (
+                    <Languages className="relative w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                  ) : (
+                    <GraduationCap className="relative w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                  )}
+                  <span className="relative font-medium">
+                    {isLanguageCert
+                      ? `Level: ${certificate.cefrLevel || certificate.grade}`
+                      : `Grade: ${certificate.grade}`}
+                  </span>
                 </div>
               </div>
 
-              {/* Enhanced Technologies Learned Section */}
+              {/* Enhanced Technologies/Skills Learned Section */}
               <div className="space-y-2 sm:space-y-4 md:space-y-6">
                 <h3 className="text-sm sm:text-lg md:text-xl font-semibold text-white/90 mt-4 sm:mt-8 md:mt-12 lg:mt-0 flex items-center gap-1 sm:gap-2 md:gap-3">
-                  <Code2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-400" />
-                  <span>Technologies Learned</span>
+                  {isLanguageCert ? (
+                    <Languages className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-400" />
+                  ) : (
+                    <Code2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-400" />
+                  )}
+                  <span>{isLanguageCert ? "Skills Developed" : "Technologies Learned"}</span>
                   <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-purple-400" />
                 </h3>
                 {certificate.technologiesLearned && certificate.technologiesLearned.length > 0 ? (
@@ -277,7 +350,11 @@ const CertificateDetails = () => {
               <div className="relative rounded-lg sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <img
-                  src={certificate.image || "/placeholder.svg"}
+                  src={
+                    isEFSet
+                      ? "https://i.ibb.co.com/pjs5TN5Z/Official-EF-SET-Certificate- -Abdullah-Badres.jpg"
+                      : certificate.image || "/placeholder.svg"
+                  }
                   alt={certificate.title}
                   className="w-full object-cover transform transition-transform duration-700 will-change-transform group-hover:scale-105"
                   onLoad={() => setIsImageLoaded(true)}
@@ -308,7 +385,7 @@ const CertificateDetails = () => {
                   <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
                     <Building className="w-3 h-3 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[10px] sm:text-sm text-gray-400">Institution</p>
+                      <p className="text-[10px] sm:text-sm text-gray-400">{isEFSet ? "Organizer" : "Institution"}</p>
                       <p className="text-xs sm:text-base text-white font-medium truncate">
                         {certificate.institution || "Dibimbing.id"}
                       </p>
@@ -317,21 +394,45 @@ const CertificateDetails = () => {
                   <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
                     <Calendar className="w-3 h-3 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[10px] sm:text-sm text-gray-400">Duration</p>
+                      <p className="text-[10px] sm:text-sm text-gray-400">{isEFSet ? "Established in" : "Duration"}</p>
                       <p className="text-xs sm:text-base text-white font-medium">{certificate.duration}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
-                    <Hash className="w-3 h-3 sm:w-5 sm:h-5 text-orange-400 flex-shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-[10px] sm:text-sm text-gray-400">Certificate No.</p>
-                      <p className="text-xs sm:text-base text-white font-medium font-mono">
-                        {certificate.certificateNo}
-                      </p>
+                  {certificate.certificateNo && (
+                    <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
+                      <Hash className="w-3 h-3 sm:w-5 sm:h-5 text-orange-400 flex-shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-[10px] sm:text-sm text-gray-400">Certificate No.</p>
+                        <p className="text-xs sm:text-base text-white font-medium font-mono">
+                          {certificate.certificateNo}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {/* EF SET specific scores */}
+                  {isEFSet && (
+                    <>
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
+                        <Trophy className="w-3 h-3 sm:w-5 sm:h-5 text-yellow-400 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[10px] sm:text-sm text-gray-400">EF SET Overall Score</p>
+                          <p className="text-xs sm:text-base text-white font-medium">{certificate.efsetScore}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
+                        <Languages className="w-3 h-3 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[10px] sm:text-sm text-gray-400">CEFR Overall Score</p>
+                          <p className="text-xs sm:text-base text-white font-medium">{certificate.cefrLevel}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
+
+              {/* EF SET Skill Breakdown */}
+              {isEFSet && certificate.skillBreakdown && <SkillBreakdown skillBreakdown={certificate.skillBreakdown} />}
 
               {/* Enhanced Key Features */}
               <div className="bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-2xl p-3 sm:p-6 md:p-8 border border-white/10 space-y-3 sm:space-y-6 hover:border-white/20 transition-colors duration-300 group">
