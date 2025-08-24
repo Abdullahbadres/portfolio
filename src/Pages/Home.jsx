@@ -182,9 +182,9 @@ const Home = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg mt-4 text-center">
+                <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg mt-4 text-justify">
                   Enthusiastic and detail-driven professional transitioning into front-end web development. Currently
-                  develop expertise in HTML, CSS (Tailwind and Bootstrap), JavaScript, and modern library (React.js).
+                  develop expertise in HTML, CSS (Tailwind and Bootstrap), JavaScript, and modern library (React.js, Next.js.).
                   Brings a strong background in creativity with critical and analytical thinking, refined through
                   experiences in marketing, team leadership, and entrepreneurship. Committed to building responsive,
                   user-focused, and visually striking web solutions.
