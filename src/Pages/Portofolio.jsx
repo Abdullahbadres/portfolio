@@ -172,10 +172,10 @@ const projectData = [
     Title: "Traveloke",
     Description: "A travel booking and exploration platform with modern UI and seamless user experience.",
     Img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/traveloke.jpg-OTCvGTXfwSmYGKZHl6cVch2WJtYfuc.jpeg",
-    Link: "https://traveloke.vercel.app/",
+    Link: "https://travelokefinpro.vercel.app/",
     TechStack: ["React", "JavaScript", "Tailwind CSS", "API Integration"],
     Features: ["Booking System", "Search Functionality", "Responsive Design", "User Profiles"],
-    Github: "https://github.com/Abdullahbadres/traveloke",
+    Github: "https://github.com/Abdullahbadres/travelokefinpro",
   },
 ]
 
@@ -600,3 +600,4 @@ export default function FullWidthTabs() {
     </div>
   )
 }
+
