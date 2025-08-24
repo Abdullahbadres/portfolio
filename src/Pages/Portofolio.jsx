@@ -144,8 +144,7 @@ const projectData = [
     Link: "https://react-with-html-css-mini-project-anakpanah-vercel-7fvn.vercel.app",
     TechStack: ["React", "JavaScript", "Tailwind CSS", "HTML"],
     Features: ["User Authentication", "Dashboard Interface", "Data Visualization", "Mobile Responsive"],
-    Github:
-      "https://github.com/Abdullahbadres/React-with-HTML-CSS-mini-project-anakpanah-VERCEL/tree/main/vite-project",
+    Github: "https://github.com/Abdullahbadres/React-with-HTML-CSS-mini-project-anakpanah-VERCEL/tree/main/vite-project",
   },
   {
     id: "project4",
@@ -159,16 +158,6 @@ const projectData = [
   },
   {
     id: "project5",
-    Title: "Portfolio Website",
-    Description: "My personal portfolio website showcasing my projects and skills.",
-    Img: "https://placehold.co/600x340/6366f1/ffffff?text=Portfolio+Website",
-    Link: "/game",
-    TechStack: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
-    Features: ["Responsive Design", "Animations", "Project Showcase", "Contact Form"],
-    Github: "https://github.com/Abdullahbadres",
-  },
-  {
-    id: "project6",
     Title: "Traveloke",
     Description: "A travel booking and exploration platform with modern UI and seamless user experience.",
     Img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/traveloke.jpg-OTCvGTXfwSmYGKZHl6cVch2WJtYfuc.jpeg",
@@ -178,7 +167,7 @@ const projectData = [
     Github: "https://github.com/Abdullahbadres/travelokefinpro",
   },
     {
-    id: "project7",
+    id: "project6",
     Title: "Mobile Sosmed",
     Description: "Social Media App for Mobile and Desktop with modern UI and seamless user experience.",
     Img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sosmed-52jh7SxryyXtfdJAQmy41gJcBvTJ0W.png",
@@ -186,6 +175,16 @@ const projectData = [
     TechStack: ["Next.js", "JavaScript", "TypeScript", "Tailwind CSS", "API Integration"],
     Features: ["Social Media", "Seamless User Experience", "Responsive Design", "User Profiles", "Zodiac Feature", "Profile Customization"],
     Github: "https://github.com/Abdullahbadres/SOSMED",
+  },
+    {
+    id: "project7",
+    Title: "Portfolio Website",
+    Description: "My personal portfolio website showcasing my projects and skills.",
+    Img: "https://placehold.co/600x340/6366f1/ffffff?text=Portfolio+Website",
+    Link: "/game",
+    TechStack: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
+    Features: ["Responsive Design", "Animations", "Project Showcase", "Contact Form"],
+    Github: "https://github.com/Abdullahbadres",
   },
 ]
 
