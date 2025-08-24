@@ -177,6 +177,16 @@ const projectData = [
     Features: ["Booking System", "Search Functionality", "Responsive Design", "User Profiles"],
     Github: "https://github.com/Abdullahbadres/travelokefinpro",
   },
+    {
+    id: "project7",
+    Title: "Mobile Sosmed",
+    Description: "Social Media App for Mobile and Desktop with modern UI and seamless user experience.",
+    Img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sosmed-52jh7SxryyXtfdJAQmy41gJcBvTJ0W.png",
+    Link: "https://sosmed-five.vercel.app/",
+    TechStack: ["Next.js", "JavaScript", "TypeScript", "Tailwind CSS", "API Integration"],
+    Features: ["Social Media", "Seamless User Experience", "Responsive Design", "User Profiles", "Zodiac Feature", "Profile Customization"],
+    Github: "https://github.com/Abdullahbadres/SOSMED",
+  },
 ]
 
 // ✅ Certificate data dengan updated PDF links dan Bachelor's Certificate
@@ -600,4 +610,3 @@ export default function FullWidthTabs() {
     </div>
   )
 }
-
