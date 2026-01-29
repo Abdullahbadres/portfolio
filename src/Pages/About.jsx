@@ -208,9 +208,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              A passionate Front-End Developer with a focus on creating engaging digital experiences. I strive to
-              deliver the best solutions for every project, combining creativity with technical expertise to build
-              responsive and user-friendly web applications.
+              A passionate Full-Stack Developer focused on building scalable, engaging digital experiences. I combine front-end creativity with back-end engineering to deliver robust, responsive, and user-centric web applications, ensuring high performance across the entire stack.
             </p>
 
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
