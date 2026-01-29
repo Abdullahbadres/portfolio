@@ -27,7 +27,7 @@ const MainTitle = memo(() => (
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-          Frontend
+          Full-Stack
         </span>
       </span>
       <br />
@@ -81,8 +81,8 @@ const SocialLink = memo(({ icon: Icon, link }) => (
 const TYPING_SPEED = 100
 const ERASING_SPEED = 50
 const PAUSE_DURATION = 2000
-const WORDS = ["Frontend Developer", "Tech Enthusiast"]
-const TECH_STACK = ["React", "Javascript", "Node.js", "Tailwind"]
+const WORDS = ["Full-Stack Developer", "Tech Enthusiast"]
+const TECH_STACK = ["React", "Vue", "Next", "Javascript", "Typescript", "C#", "MSSQL","Node.js", "Tailwind", "Bootstrap", "Docker", "DBeaver"]
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/Abdullahbadres" },
   { icon: Linkedin, link: "https://linkedin.com/in/abdullah-badres/" },
@@ -183,11 +183,7 @@ const Home = () => {
 
                 {/* Description */}
                 <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg mt-4 text-justify">
-                  Enthusiastic and detail-driven professional transitioning into front-end web development. Currently
-                  develop expertise in HTML, CSS (Tailwind and Bootstrap), JavaScript, and modern library (React.js, Next.js.).
-                  Brings a strong background in creativity with critical and analytical thinking, refined through
-                  experiences in marketing, team leadership, and entrepreneurship. Committed to building responsive,
-                  user-focused, and visually striking web solutions.
+                  Enthusiastic and detail-driven Full-Stack Developer with a strong foundation in front-end web development. Proficient in HTML, CSS (Tailwind CSS, Bootstrap), JavaScript, and modern frameworks including React.js, Next.js, and Vue.js. Experienced in back-end development using C# with MSSQL, database management via DBeaver, and containerized development using Docker. Brings a strong background in creativity, critical, and analytical thinking shaped by experience in marketing, team leadership, and entrepreneurship. Committed to building scalable, responsive, and user-focused web solutions.
                 </p>
 
                 {/* Tech Stack */}
