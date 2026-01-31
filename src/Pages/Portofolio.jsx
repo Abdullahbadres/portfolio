@@ -194,6 +194,16 @@ const projectData = [
     Features: ["Responsive Design", "Animations", "Project Showcase", "Contact Form"],
     Github: "https://github.com/Abdullahbadres",
   },
+    {
+    id: "project8",
+    Title: "Traveloke Vue",
+    Description: "A modern travel booking and exploration platform built with Vue.js, featuring dynamic destination browsing, advanced filtering, and seamless user experience.",
+    Img: "https://i.ibb.co.com/27HH7vkt/image-2026-01-31-213045814.png",
+    Link: "https://traveloke-vue.vercel.app",
+    TechStack: ["Vue.js", "JavaScript", "Tailwind CSS", "API Integration"],
+    Features: ["Travel Destination Browsing", "Advanced Filtering", "Booking System", "Responsive Design", "Dynamic Components", "State Management"],
+    Github: "https://github.com/Abdullahbadres/TravelokeVue",
+  },
 ]
 
 // ✅ Certificate data dengan updated PDF links dan Bachelor's Certificate
