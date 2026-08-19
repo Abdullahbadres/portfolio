@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Azure">
+  <defs>
+    <linearGradient id="az-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="32" fill="#0F172A" />
+  <path
+    d="M65 202L117 54h34l-52 148H65zm65 0l19-54 26 54h-45zm-18-36l14-41 35 77h30L151 54h-26l-49 148h36z"
+    fill="url(#az-grad)"
+  />
+</svg>

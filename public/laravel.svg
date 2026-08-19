@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Laravel">
+  <rect width="256" height="256" rx="32" fill="#0F172A" />
+  <path
+    d="M196 86l-26-15-26 15v30l-26 15-26-15V86L66 71 40 86v84l52 30 26-15 26 15 52-30V86zm-78 79l-26 15-26-15v-30l26-15 26 15v30zm52 0l-26 15-26-15v-30l26-15 26 15v30zm0-60l-26 15-26-15V90l26-15 26 15v30z"
+    fill="#FF2D20"
+  />
+</svg>

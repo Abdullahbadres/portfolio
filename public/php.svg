@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="PHP">
+  <rect width="256" height="256" rx="32" fill="#0F172A" />
+  <ellipse cx="128" cy="128" rx="92" ry="52" fill="#777BB4" />
+  <path
+    d="M83 110h16c10 0 18 5 18 15 0 10-8 16-19 16h-7v15H83v-46zm15 24c6 0 10-2 10-8 0-5-4-8-10-8h-7v16h7zm26-24h9l4 22 6-22h9l6 22 4-22h9l-10 46h-9l-5-21-6 21h-9l-8-46zm51 0h16c10 0 18 5 18 15 0 10-8 16-19 16h-7v15h-8v-46zm15 24c6 0 10-2 10-8 0-5-4-8-10-8h-7v16h7z"
+    fill="#E5E7EB"
+  />
+</svg>

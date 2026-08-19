@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Tech Stack">
+  <defs>
+    <linearGradient id="stack-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="32" fill="#0F172A" />
+  <path
+    d="M128 48l68 39v82l-68 39-68-39V87l68-39zm0 20l-50 29v60l50 29 50-29V97l-50-29zm-8 40h16v40h-16v-40zm0 52h16v16h-16v-16z"
+    fill="url(#stack-grad)"
+  />
+</svg>
